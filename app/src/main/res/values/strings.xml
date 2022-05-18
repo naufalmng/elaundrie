@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">E-Laundrie</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="data_pelanggan">Data\nPelanggan</string>
+    <string name="data_pelanggan2">Data Pelanggan</string>
+    <string name="hai_selamat_datang">Hai,\nSelamat Datang !</string>
+    <string name="hai_selamat_datang2">Hai, Selamat Datang !\nAdmin %1$s</string>
+    <string name="e_laundrie">E-Laundrie</string>
+    <string name="tentang_fragment">Tentang Aplikasi</string>
+    <string name="tentang_naplikasi">Tentang\nAplikasi</string>
+    <string name="copyright">E-Laundrie merupakan sebuah aplikasi android untuk menyimpan data laundry customer sehingga seseorang dapat menambah,menyunting,dan menghapus data laundry customer.\n\nAplikasi ini dibuat untuk assesment mobpro. Dapatkan sourcecodenya di https://github.com/naufalmng/elaundrie\n\nCopyright © 2022 M Naufal Hanif.\nAll rights reserved.</string>
+    <string name="_8942">⋮</string>
+    <string name="jumlah_1_s">Jumlah Laundry: %1$s</string>
+    <string name="id_1_s">ID: %1$s</string>
+    <string name="tambah_pelanggan">Tambah Pelanggan</string>
+
+</resources>

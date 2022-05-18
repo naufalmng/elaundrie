@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tvElaundry"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp"
+    android:layout_marginTop="20dp"
+    android:drawablePadding="10dp"
+    android:fontFamily="@font/poppins_bold"
+    android:gravity="center_vertical"
+    android:text="@string/e_laundrie"
+    android:textColor="@color/black"
+    android:textSize="25sp"
+    app:drawableStartCompat="@drawable/ic_laundry"/>

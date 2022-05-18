@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "655321064163",
+    "project_id": "e-laundrie",
+    "storage_bucket": "e-laundrie.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:655321064163:android:f2f2e8ae13156248105bd6",
+        "android_client_info": {
+          "package_name": "com.xnfl16.elaundrie"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "655321064163-87rliaevp9i9rqgfdh9vq1h68k9isv2i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVcZ-lt1HAMo7_SbsfBeoVpbiGmAhmrQc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "655321064163-87rliaevp9i9rqgfdh9vq1h68k9isv2i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

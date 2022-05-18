@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/app_nav"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.xnfl16.elaundrie.ui.main.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_mainFragment_to_tentangFragment"
+            app:destination="@id/tentangFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_dataPelangganFragment"
+            app:destination="@id/dataPelangganFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/tentangFragment"
+        android:name="com.xnfl16.elaundrie.ui.tentang.TentangFragment"
+        android:label="fragment_tentang"
+        tools:layout="@layout/fragment_tentang" >
+        <action
+            android:id="@+id/action_tentangFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/dataPelangganFragment"
+        android:name="com.xnfl16.elaundrie.ui.data_pelanggan.DataPelangganFragment"
+        android:label="fragment_data_pelanggan"
+        tools:layout="@layout/fragment_data_pelanggan" >
+        <action
+            android:id="@+id/action_dataPelangganFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+</navigation>
