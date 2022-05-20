@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.xnfl16.elaundrie.ui.main.MainFragment"
-        android:label="fragment_main"
+        android:label="E-Laundrie"
         tools:layout="@layout/fragment_main" >
         <action
             android:id="@+id/action_mainFragment_to_tentangFragment"
@@ -20,7 +20,7 @@
     <fragment
         android:id="@+id/tentangFragment"
         android:name="com.xnfl16.elaundrie.ui.tentang.TentangFragment"
-        android:label="fragment_tentang"
+        android:label="Tentang Aplikasi"
         tools:layout="@layout/fragment_tentang" >
         <action
             android:id="@+id/action_tentangFragment_to_mainFragment"
@@ -29,10 +29,28 @@
     <fragment
         android:id="@+id/dataPelangganFragment"
         android:name="com.xnfl16.elaundrie.ui.data_pelanggan.DataPelangganFragment"
-        android:label="fragment_data_pelanggan"
+        android:label="Data Pelanggan"
         tools:layout="@layout/fragment_data_pelanggan" >
         <action
             android:id="@+id/action_dataPelangganFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_dataPelangganFragment_to_dialogUpdateFragment"
+            app:destination="@id/dialogUpdateFragment" />
     </fragment>
+
+    <dialog
+        android:id="@+id/dialogUpdateFragment"
+        android:name="com.xnfl16.elaundrie.ui.data_pelanggan.DialogUpdateFragment"
+        android:label="fragment_dialog_update"
+        tools:layout="@layout/fragment_dialog_update" >
+        <argument
+            android:name="dataLaundryPelanggan"
+            app:argType="com.xnfl16.elaundrie.core.data.model.Pelanggan"
+            app:nullable="true"
+            android:defaultValue="@null" />
+        <action
+            android:id="@+id/action_dialogUpdateFragment_to_dataPelangganFragment"
+            app:destination="@id/dataPelangganFragment" />
+    </dialog>
 </navigation>

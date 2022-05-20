@@ -2,6 +2,7 @@ package com.xnfl16.elaundrie.ui.main
 
 import android.app.ActionBar
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +15,8 @@ import androidx.navigation.fragment.findNavController
 import com.xnfl16.elaundrie.R
 import com.xnfl16.elaundrie.databinding.FragmentMainBinding
 import com.xnfl16.elaundrie.utils.enableOnClickAnimation
+import java.text.SimpleDateFormat
+import java.util.*
 
 class MainFragment : Fragment() {
    private var _binding: FragmentMainBinding? = null
@@ -26,10 +29,6 @@ class MainFragment : Fragment() {
    ): View {
        _binding = FragmentMainBinding.inflate(inflater, container, false)
        with(binding){
-           appBar.btnBack.visibility = View.GONE
-           appBar.title.layoutParams = LinearLayoutCompat.LayoutParams(LinearLayoutCompat.LayoutParams.WRAP_CONTENT,LinearLayoutCompat.LayoutParams.MATCH_PARENT).apply {
-               setMargins(50,0,16,0)
-           }
            btnTentangAplikasi.enableOnClickAnimation()
            btnDataPelanggan.enableOnClickAnimation()
            btnTentangAplikasi.setOnClickListener{
@@ -43,6 +42,12 @@ class MainFragment : Fragment() {
 
        return binding.root
    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+    }
+
+
 
     override fun onDestroyView() {
        super.onDestroyView()

@@ -20,15 +20,11 @@ class TentangFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentTentangBinding.inflate(inflater, container, false)
-        binding.appBar.title.text = getString(R.string.tentang_fragment)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.appBar.btnBack.setOnClickListener {
-            findNavController().navigate(R.id.action_tentangFragment_to_mainFragment)
-        }
      }
 
     override fun onDestroyView() {

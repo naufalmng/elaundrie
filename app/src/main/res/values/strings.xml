@@ -2,17 +2,32 @@
     <string name="app_name">E-Laundrie</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="data_pelanggan">Data\nPelanggan</string>
+    <string name="data_pelanggan">Data Pelanggan</string>
     <string name="data_pelanggan2">Data Pelanggan</string>
     <string name="hai_selamat_datang">Hai,\nSelamat Datang !</string>
     <string name="hai_selamat_datang2">Hai, Selamat Datang !\nAdmin %1$s</string>
     <string name="e_laundrie">E-Laundrie</string>
     <string name="tentang_fragment">Tentang Aplikasi</string>
-    <string name="tentang_naplikasi">Tentang\nAplikasi</string>
+    <string name="tentang_naplikasi">Tentang Aplikasi</string>
     <string name="copyright">E-Laundrie merupakan sebuah aplikasi android untuk menyimpan data laundry customer sehingga seseorang dapat menambah,menyunting,dan menghapus data laundry customer.\n\nAplikasi ini dibuat untuk assesment mobpro. Dapatkan sourcecodenya di https://github.com/naufalmng/elaundrie\n\nCopyright © 2022 M Naufal Hanif.\nAll rights reserved.</string>
     <string name="_8942">⋮</string>
     <string name="jumlah_1_s">Jumlah Laundry: %1$s</string>
+    <string name="jumlah_laundry">Jumlah : %1$s Kg</string>
+    <string-array name="item_status_pembayaran">
+        <item>Lunas</item>
+        <item>Belum Bayar</item>
+    </string-array>
     <string name="id_1_s">ID: %1$s</string>
-    <string name="tambah_pelanggan">Tambah Pelanggan</string>
+    <string name="tambah_pelanggan">Tambah Data</string>
+    <string name="alamat_pelanggan">Alamat Pelanggan</string>
+    <string name="diskon">Diskon %</string>
+    <string name="loading">Loading...</string>
+    <string name="data_berhasil_ditambah">Data Berhasil ditambah</string>
+    <string name="data_berhasil_diupdate">Data Berhasil diupdate</string>
+    <string name="total_1s">Total: Rp.%1$s</string>
+    <string name="jumlah_kg">Jumlah/Kg</string>
+    <string name="status_pembayaran">Status Pembayaran</string>
+    <string name="layanan">Layanan</string>
+    <string name="update_data">Update Data</string>
 
 </resources>

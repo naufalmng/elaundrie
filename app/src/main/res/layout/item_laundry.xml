@@ -1,106 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="10dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_margin="16dp"
+    android:background="?android:attr/selectableItemBackground"
+    android:backgroundTint="@color/yellow_light"
+    android:elevation="4dp"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="4dp">
 
-    <com.google.android.material.card.MaterialCardView
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:strokeColor="@color/black"
-        app:strokeWidth="0.5dp"
-        android:backgroundTint="@color/yellow_primary"
-        app:cardCornerRadius="10dp"
-        android:elevation="4dp"
-        app:cardElevation="4dp">
+        android:orientation="vertical"
+        android:padding="16dp">
 
-        <androidx.appcompat.widget.LinearLayoutCompat
+        <GridLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="16dp"
-            android:orientation="vertical">
-
-            <GridLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="30dp"
-                android:columnCount="2">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/nama"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_row="1"
-                    android:layout_column="0"
-                    android:layout_columnWeight="1"
-                    android:includeFontPadding="false"
-                    android:fontFamily="@font/poppins_medium"
-                    android:text="Nazhrin Nazaruddin"/>
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tanggal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="end"
-                    android:layout_row="1"
-                    android:layout_column="1"
-                    android:layout_columnWeight="1"
-                    android:text="10 January 2022 09:42"/>
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/id"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:includeFontPadding="false"
-                    android:fontFamily="@font/poppins_regular"
-                    android:text="@string/id_1_s"/>
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/jumlah"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_row="3"
-                    android:layout_column="0"
-                    android:layout_columnWeight="1"
-                    android:text="Jumlah: 10 Kg"/>
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/status"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:layout_row="4"
-                    android:layout_column="0"
-                    android:text="Status: Lunas"/>
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/status"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:layout_row="4"
-                    android:layout_column="1"
-                    android:gravity="center_horizontal"
-                    android:text="Total: %$1s"/>
-
-            </GridLayout>
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnOptions"
-            android:layout_width="20dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical|end"
-            android:backgroundTint="@android:color/transparent"
-            android:background="@android:color/transparent"
-            android:text="@string/_8942"
-            android:layout_marginEnd="5dp"
-            android:textAppearance="?android:textAppearanceLarge"/>
+            android:layout_marginEnd="30dp"
+            android:columnCount="2">
 
-    </com.google.android.material.card.MaterialCardView>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/nama"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="1"
+                android:layout_column="0"
+                android:layout_columnWeight="1"
+                android:fontFamily="@font/poppins_medium"
+                android:includeFontPadding="false"
+                android:text="Nazhrin Nazaruddin" />
 
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tanggal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="1"
+                android:layout_column="1"
+                android:layout_columnWeight="1"
+                android:fontFamily="@font/poppins_regular"
+                android:gravity="end"
+                android:text="10 January 2022 09:42" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:fontFamily="@font/poppins_regular"
+                android:includeFontPadding="false"
+                android:text="@string/id_1_s" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/jumlah"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="3"
+                android:layout_column="0"
+                android:layout_columnWeight="1"
+                android:fontFamily="@font/poppins_regular"
+                android:text="@string/jumlah_laundry" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="4"
+                android:layout_column="0"
+                android:layout_columnWeight="1"
+                android:fontFamily="@font/poppins_bold"
+                android:text="Belum Bayar" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="4"
+                android:layout_column="1"
+                android:layout_columnWeight="1"
+                android:fontFamily="@font/poppins_regular"
+                android:gravity="center_horizontal"
+                android:text="@string/total_1s"
+                android:textStyle="bold" />
+
+        </GridLayout>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</com.google.android.material.card.MaterialCardView>

@@ -6,12 +6,6 @@
     android:orientation="vertical"
     tools:context=".ui.tentang.TentangFragment">
 
-    <include
-        android:id="@+id/appBar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        layout="@layout/base_appbar"/>
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
