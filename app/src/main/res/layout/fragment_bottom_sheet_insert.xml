@@ -59,9 +59,9 @@
                         android:clipToPadding="false"
                         android:minHeight="64dp"
                         android:paddingTop="10dp"
-                        android:textColorHint="?android:textColorHint"
+                        android:textColorHint="@color/abu9E"
                         app:boxBackgroundMode="none"
-                        app:hintTextColor="?android:textColorHint">
+                        app:hintTextColor="@color/abu9E">
 
                         <androidx.appcompat.widget.AppCompatEditText
                             android:id="@+id/etNama"
@@ -73,6 +73,7 @@
                             android:paddingStart="16dp"
                             android:paddingTop="5dp"
                             android:paddingEnd="16dp"
+                            android:textColor="@color/black21"
                             android:textSize="20sp" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -85,19 +86,19 @@
                         android:clipToPadding="false"
                         android:minHeight="64dp"
                         android:paddingTop="10dp"
-                        android:textColorHint="?android:textColorHint"
+                        android:textColorHint="@color/abu9E"
                         app:boxBackgroundMode="none"
-                        app:hintTextColor="?android:textColorHint">
+                        app:hintTextColor="@color/abu9E">
 
                         <androidx.appcompat.widget.AppCompatEditText
                             android:id="@+id/etJumlah"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:digits=" abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
                             android:hint="@string/jumlah_kg"
-                            android:inputType="text"
+                            android:inputType="number"
                             android:paddingStart="16dp"
                             android:paddingTop="5dp"
+                            android:textColor="@color/black21"
                             android:paddingEnd="16dp"
                             android:textSize="20sp" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -110,17 +111,17 @@
                         android:clipToPadding="false"
                         android:minHeight="64dp"
                         android:paddingTop="10dp"
-                        android:textColorHint="?android:textColorHint"
+                        android:textColorHint="@color/abu9E"
                         app:boxBackgroundMode="none"
-                        app:hintTextColor="?android:textColorHint">
+                        app:hintTextColor="@color/abu9E">
 
                         <androidx.appcompat.widget.AppCompatEditText
                             android:id="@+id/etDiskon"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:digits=" abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
                             android:hint="@string/diskon"
-                            android:inputType="text"
+                            android:inputType="number"
+                            android:textColor="@color/black21"
                             android:paddingStart="16dp"
                             android:paddingTop="5dp"
                             android:paddingEnd="16dp"
@@ -135,31 +136,31 @@
                         android:clipToPadding="false"
                         android:minHeight="64dp"
                         android:paddingTop="10dp"
-                        android:textColorHint="?android:textColorHint"
+                        android:textColorHint="@color/abu9E"
                         app:boxBackgroundMode="none"
-                        app:hintTextColor="?android:textColorHint">
+                        app:hintTextColor="@color/abu9E">
 
                         <androidx.appcompat.widget.AppCompatEditText
                             android:id="@+id/etAlamat"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:digits=" abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
                             android:hint="@string/alamat_pelanggan"
                             android:inputType="text"
                             android:paddingStart="16dp"
+                            android:textColor="@color/black21"
                             android:paddingTop="5dp"
                             android:paddingEnd="16dp"
                             android:textSize="20sp" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/tilSpinner"
+                        android:id="@+id/tilStatus"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
                         android:background="@drawable/edittext_bg"
                         android:minHeight="64dp"
-                        android:textColorHint="?android:textColorHint"
+                        android:textColorHint="@color/abu9E"
                         app:boxBackgroundMode="none"
                         app:hintAnimationEnabled="false"
                         app:hintEnabled="true"
@@ -172,7 +173,8 @@
                             android:focusable="false"
                             android:paddingTop="-20dp"
                             android:paddingBottom="-20dp"
-                            android:textColor="?android:textColorHint"
+                            android:translationY="-2.5dp"
+                            android:textColor="@color/abu9E"
                             android:textSize="12sp" />
 
                         <com.skydoves.powerspinner.PowerSpinnerView
@@ -186,9 +188,11 @@
                             android:includeFontPadding="false"
                             android:minHeight="30dp"
                             android:paddingStart="16dp"
+                            android:translationY="-2.5dp"
                             android:paddingEnd="10dp"
-                            android:textColorHint="?android:textColorHint"
+                            android:textColorHint="@color/abu9E"
                             android:textSize="20sp"
+                            android:textColor="@color/black21"
                             app:spinner_arrow_animate="true"
                             app:spinner_arrow_gravity="end"
                             app:spinner_arrow_show="true"
@@ -207,31 +211,58 @@
 
 
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tilLayanan"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
                         android:background="@drawable/edittext_bg"
-                        android:clipToPadding="false"
                         android:minHeight="64dp"
-                        android:paddingTop="10dp"
-                        android:textColorHint="?android:textColorHint"
+                        android:textColorHint="@color/abu9E"
                         app:boxBackgroundMode="none"
+                        app:hintAnimationEnabled="false"
                         app:hintEnabled="true"
                         app:hintTextColor="?android:textColorHint">
 
-                        <androidx.appcompat.widget.AppCompatEditText
-                            android:id="@+id/etLayanan"
+                        <EditText
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:clickable="false"
                             android:focusable="false"
-                            android:hint="@string/layanan"
-                            android:inputType="text"
+                            android:translationY="-2.5dp"
+                            android:paddingTop="-20dp"
+                            android:paddingBottom="-20dp"
+                            android:textColor="@color/abu9E"
+                            android:textSize="12sp" />
+
+                        <com.skydoves.powerspinner.PowerSpinnerView
+                            android:id="@+id/spinnerLayanan"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:fontFamily="@font/poppins_regular"
+                            android:gravity="start|center_vertical"
+                            android:hint="@string/pilih_layanan"
+                            android:textColor="@color/black21"
+                            android:translationY="-2.5dp"
+                            android:includeFontPadding="false"
+                            android:minHeight="30dp"
                             android:paddingStart="16dp"
-                            android:paddingTop="5dp"
-                            android:paddingEnd="16dp"
-                            android:text="FLASH 1 HOUR"
-                            android:textSize="20sp" />
+                            android:paddingEnd="10dp"
+                            android:textColorHint="@color/abu9E"
+                            android:textSize="20sp"
+                            app:spinner_arrow_animate="true"
+                            app:spinner_arrow_gravity="end"
+                            app:spinner_arrow_show="true"
+                            app:spinner_arrow_tint="@color/black"
+                            app:spinner_divider_color="@android:color/transparent"
+                            app:spinner_divider_show="true"
+                            app:spinner_divider_size="10dp"
+                            app:spinner_item_array="@array/item_layanan"
+                            app:spinner_popup_animation="dropdown"
+                            app:spinner_popup_background="@drawable/spinner_bg"
+                            app:spinner_popup_elevation="1dp"
+                            app:spinner_popup_height="135dp" />
+
 
                     </com.google.android.material.textfield.TextInputLayout>
 

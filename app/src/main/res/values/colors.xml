@@ -2,10 +2,12 @@
 <resources>
     <color name="yellow_primary">#FEE440</color>
     <color name="yellow_light">#FFF8CF</color>
-    <color name="black">#212121</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
     <color name="white_dark">#7f7f7f</color>
     <color name="abuF5">#F5F5F5</color>
+    <color name="hijau">#76FF03</color>
+    <color name="merah">#FF0000</color>
     <color name="abuE0">#E0E0E0</color>
     <color name="abu9E">#9E9E9E</color>
     <color name="black21">#212121</color>

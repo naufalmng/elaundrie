@@ -2,11 +2,11 @@
 <com.google.android.material.card.MaterialCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginTop="10dp"
-    android:layout_marginStart="16dp"
-    android:layout_marginEnd="16dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp"
     android:background="?android:attr/selectableItemBackground"
     android:backgroundTint="@color/yellow_light"
     android:elevation="4dp"
@@ -19,34 +19,36 @@
         android:padding="16dp">
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tanggal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
+            android:text="10 January 2022 09:42"
+            android:textAlignment="textStart"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/nama"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_medium"
             android:includeFontPadding="false"
+            android:textColor="@color/black"
             android:text="Nazhrin Nazaruddin"
-            android:textColor="@color/black"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@id/tanggal"
+            app:layout_constraintStart_toStartOf="@id/tanggal"/>
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tanggal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_regular"
-            android:gravity="end"
-            android:textColor="@color/black"
-            android:text="10 January 2022 09:42"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_columnWeight="1"
-            android:fontFamily="@font/poppins_regular"
             android:textColor="@color/black"
+            android:fontFamily="@font/poppins_regular"
             android:includeFontPadding="false"
             android:text="@string/id_1_s"
             app:layout_constraintStart_toStartOf="parent"
@@ -88,12 +90,11 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_regular"
             android:gravity="center_horizontal"
-            android:textColor="@color/black"
             android:text="@string/total_1s"
+            android:textColor="@color/black"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@id/tanggal"
-            app:layout_constraintBottom_toBottomOf="parent"
-            />
+            app:layout_constraintStart_toStartOf="@id/status"
+            app:layout_constraintTop_toBottomOf="@id/status" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

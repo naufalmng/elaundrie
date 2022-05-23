@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/app_nav"
-    app:startDestination="@id/mainFragment">
+    app:startDestination="@id/splashScreenFragment">
 
     <fragment
         android:id="@+id/mainFragment"
@@ -37,11 +37,14 @@
         <action
             android:id="@+id/action_dataPelangganFragment_to_dialogUpdateFragment"
             app:destination="@id/dialogUpdateFragment" />
+        <action
+            android:id="@+id/action_dataPelangganFragment_to_dialogDetailFragment"
+            app:destination="@id/dialogDetailFragment" />
     </fragment>
 
     <dialog
         android:id="@+id/dialogUpdateFragment"
-        android:name="com.xnfl16.elaundrie.ui.data_pelanggan.DialogUpdateFragment"
+        android:name="com.xnfl16.elaundrie.ui.data_pelanggan.update.DialogUpdateFragment"
         android:label="fragment_dialog_update"
         tools:layout="@layout/fragment_dialog_update" >
         <argument
@@ -53,4 +56,32 @@
             android:id="@+id/action_dialogUpdateFragment_to_dataPelangganFragment"
             app:destination="@id/dataPelangganFragment" />
     </dialog>
+    <fragment
+        android:id="@+id/splashScreenFragment"
+        android:name="com.xnfl16.elaundrie.ui.splashscreen.SplashScreenFragment"
+        android:label="fragment_splash_screen"
+        tools:layout="@layout/fragment_splash_screen" >
+        <action
+            android:id="@+id/action_splashScreenFragment_to_mainFragment"
+            app:destination="@id/mainFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/app_nav"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <action
+        android:id="@+id/go_to_dataPelangganFragment"
+        app:destination="@id/dataPelangganFragment"/>
+    <dialog
+        android:id="@+id/dialogDetailFragment"
+        android:name="com.xnfl16.elaundrie.ui.data_pelanggan.detail.DialogDetailFragment"
+        android:label="fragment_dialog_detail"
+        tools:layout="@layout/fragment_dialog_detail" >
+        <argument
+            android:name="pelanggan"
+            app:argType="com.xnfl16.elaundrie.core.data.model.Pelanggan"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </dialog>
+
 </navigation>

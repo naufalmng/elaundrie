@@ -2,57 +2,32 @@
 
 package com.xnfl16.elaundrie.utils
 
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.content.Context
-import android.graphics.Color
-import android.graphics.drawable.Drawable
-import android.os.Handler
-import android.os.Looper
-import android.view.Gravity
-import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
-import android.widget.Button
+import android.view.View.OnTouchListener
 import android.widget.Toast
-import androidx.core.content.ContextCompat
-import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.snackbar.Snackbar.SnackbarLayout
-import com.xnfl16.elaundrie.R
-import com.xnfl16.elaundrie.databinding.FragmentCustomDialogNotificationBinding
-import com.xnfl16.elaundrie.ui.data_pelanggan.DataPelangganAdapter
 import java.text.SimpleDateFormat
 import java.util.*
 
 
 @SuppressLint("ClickableViewAccessibility")
 fun View.enableOnClickAnimation() {
+    val reducedvalue = 0.95F
+    val defaultValue = 1.0f
     setOnTouchListener { v, event ->
-        if (event?.action == MotionEvent.ACTION_DOWN) {
-            val reducedvalue = 0.95F
-            v?.scaleX = reducedvalue
-            v?.scaleY = reducedvalue
-        } else if (event?.action == MotionEvent.ACTION_UP) {
-            v?.scaleX = 1f
-            v?.scaleY = 1f
+        when(event.action){
+            MotionEvent.ACTION_UP -> animate().scaleX(defaultValue).scaleY(defaultValue).duration = 0
+            MotionEvent.ACTION_DOWN -> animate().scaleX(reducedvalue).scaleY(reducedvalue).duration = 0
+            MotionEvent.ACTION_CANCEL -> animate().scaleX(defaultValue).scaleY(defaultValue).duration = 0
         }
         false
     }
 }
-@SuppressLint("ClickableViewAccessibility")
-fun View.enableItemViewAnimation(alertDialog: DataPelangganAdapter) {
-    setOnTouchListener { v, event ->
-        if (event?.action == MotionEvent.ACTION_DOWN) {
-            val reducedvalue = 0.95F
-            v?.scaleX = reducedvalue
-            v?.scaleY = reducedvalue
-        } else if (alertDialog.isShowing()) {
-            v?.scaleX = 1f
-            v?.scaleY = 1f
-        }
-        false
-    }
-}
+
 
 @SuppressLint("ShowToast")
 fun Activity.showToast(title: String){

@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?android:selectableItemBackground"
+    android:backgroundTint="@color/white"
+    android:clickable="true"
+    android:focusable="true"
+    app:cardCornerRadius="10dp"
+    android:elevation="6dp"
+    app:cardElevation="6dp"
+    android:layout_margin="16dp"
+    tools:context=".ui.data_pelanggan.detail.DialogDetailFragment">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbarThumbVertical="@null"
+            android:scrollbarTrackVertical="@null">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/FormTextStyleSemiBold"
+                    android:text="Data Laundry"
+                    android:layout_gravity="start"
+                    android:textSize="20sp"/>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvId"
+                        style="@style/FormTextStyleSemiBold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/tv_id"
+                        android:textStyle="bold" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvTanggalDanWaktu"
+                        style="@style/FormTextStyleSemiBold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="10 Jan 2022 09:10:04"
+                        android:gravity="end"
+                        android:textStyle="bold" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                <GridLayout
+                    android:id="@+id/gridLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:columnCount="3">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/FormTextStyleReg"
+                        android:layout_columnWeight="1"
+                        android:text="@string/nama" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvNama"
+                        style="@style/FormTextStyleReg"
+                        android:layout_width="100dp"
+                        android:layout_columnWeight="1"
+                        android:text="@string/tv_nama" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/FormTextStyleReg"
+                        android:layout_row="1"
+                        android:layout_column="0"
+                        android:layout_columnWeight="1"
+                        android:layout_marginTop="4dp"
+                        android:text="@string/alamat" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvAlamat"
+                        style="@style/FormTextStyleReg"
+                        android:layout_width="100dp"
+                        android:layout_columnWeight="1"
+                        android:layout_marginTop="4dp"
+                        android:text="@string/tv_alamat" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/FormTextStyleReg"
+                        android:layout_row="2"
+                        android:layout_column="0"
+                        android:layout_columnWeight="1"
+                        android:layout_marginTop="4dp"
+                        android:text="@string/tv_jumlah_laundry" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvJumlah"
+                        style="@style/FormTextStyleReg"
+                        android:layout_width="100dp"
+                        android:layout_columnWeight="1"
+                        android:layout_marginTop="4dp"
+                        android:text="@string/tv_jumlah" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/FormTextStyleReg"
+                        android:layout_row="3"
+                        android:layout_column="0"
+                        android:layout_columnWeight="1"
+                        android:layout_marginTop="4dp"
+                        android:text="@string/diskon" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvDiskon"
+                        style="@style/FormTextStyleReg"
+                        android:layout_width="100dp"
+                        android:layout_columnWeight="1"
+                        android:layout_marginTop="4dp"
+                        android:text="@string/tv_diskon" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/FormTextStyleReg"
+                        android:layout_row="4"
+                        android:layout_column="0"
+                        android:layout_columnWeight="1"
+                        android:layout_marginTop="4dp"
+                        android:text="@string/layanan" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvLayanan"
+                        style="@style/FormTextStyleReg"
+                        android:layout_width="100dp"
+                        android:layout_columnWeight="1"
+                        android:layout_marginTop="4dp"
+                        android:text="@string/tv_layanan" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/FormTextStyleSemiBold"
+                        android:layout_row="5"
+                        android:layout_column="0"
+                        android:layout_columnWeight="1"
+                        android:layout_marginTop="4dp"
+                        android:text="@string/status_pembayaran" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvStatus"
+                        style="@style/FormTextStyleReg"
+                        android:layout_width="100dp"
+                        android:layout_columnWeight="1"
+                        android:layout_marginTop="4dp"
+                        android:text="@string/tv_status" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/FormTextStyleBold"
+                        android:layout_row="6"
+                        android:layout_column="0"
+                        android:layout_columnWeight="1"
+                        android:layout_marginTop="4dp"
+                        android:text="Total" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvTotal"
+                        style="@style/FormTextStyleReg"
+                        android:layout_width="100dp"
+                        android:layout_columnWeight="1"
+                        android:layout_marginTop="4dp"
+                        android:text="@string/tv_total" />
+
+
+
+                </GridLayout>
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnCetak"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="60dp"
+                        android:textAllCaps="false"
+                        style="@style/FormTextStyleSemiBold"
+                        android:text="Cetak"
+                        android:textSize="18sp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="1"/>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnSimpan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAllCaps="false"
+                        android:minHeight="60dp"
+                        style="@style/FormTextStyleSemiBold"
+                        android:text="Simpan"
+                        android:textSize="18sp"
+                        android:layout_weight="1"/>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+</com.google.android.material.card.MaterialCardView>

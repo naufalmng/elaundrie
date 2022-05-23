@@ -1,131 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:scrollbarThumbVertical="@null"
+    android:scrollbarTrackVertical="@null"
     tools:context=".ui.main.MainFragment">
 
-
-    <include
-        android:id="@+id/tvElaundry"
-        layout="@layout/textview_elaundry"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        android:paddingBottom="30dp">
 
-    <TextView
-        android:id="@+id/tvWelcome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:fontFamily="@font/poppins_semibold"
-        android:gravity="center_vertical"
-        android:text="@string/hai_selamat_datang"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@id/tvElaundry"
-        app:layout_constraintTop_toBottomOf="@id/tvElaundry" />
+        <include
+            android:id="@+id/tvElaundry"
+            layout="@layout/textview_elaundry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/btnDataPelanggan"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:strokeWidth="0.5dp"
-        app:strokeColor="@color/black"
-        android:backgroundTint="@color/yellow_primary"
-        android:layout_marginTop="25dp"
-        android:elevation="4dp"
-        android:minHeight="75dp"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="4dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/tvElaundry"
-        app:layout_constraintTop_toBottomOf="@id/tvWelcome">
+        <TextView
+            android:id="@+id/tvWelcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:gravity="center_vertical"
+            android:text="@string/hai_selamat_datang"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@id/tvElaundry"
+            app:layout_constraintTop_toBottomOf="@id/tvElaundry" />
 
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/btnDataPelanggan"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:strokeWidth="0.5dp"
+            app:strokeColor="@color/black"
+            android:backgroundTint="@color/yellow_primary"
+            android:layout_marginTop="25dp"
+            android:elevation="4dp"
             android:minHeight="75dp"
-            android:paddingStart="30dp"
-            android:paddingEnd="0dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:orientation="horizontal">
+            app:cardCornerRadius="10dp"
+            app:cardElevation="4dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/tvElaundry"
+            app:layout_constraintTop_toBottomOf="@id/tvWelcome">
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="wrap_content"
-                android:minWidth="70dp"
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginEnd="10dp"
-                android:background="@drawable/ic_data_icon"/>
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:fontFamily="@font/poppins_medium"
                 android:minHeight="75dp"
-                android:gravity="center_vertical"
-                android:layout_marginStart="5dp"
-                android:text="@string/data_pelanggan"
-                android:textColor="@color/black"
-                android:textSize="20sp"/>
-        </androidx.appcompat.widget.LinearLayoutCompat>
+                android:paddingStart="30dp"
+                android:paddingEnd="0dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:orientation="horizontal">
 
-    </com.google.android.material.card.MaterialCardView>
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:minWidth="70dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/ic_data_icon"/>
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/btnTentangAplikasi"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:strokeWidth="0.5dp"
-        app:strokeColor="@color/black"
-        android:backgroundTint="@color/yellow_primary"
-        android:layout_marginTop="25dp"
-        android:elevation="4dp"
-        android:minHeight="75dp"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="4dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/tvElaundry"
-        app:layout_constraintTop_toBottomOf="@id/btnDataPelanggan">
 
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/poppins_medium"
+                    android:minHeight="75dp"
+                    android:gravity="center_vertical"
+                    android:layout_marginStart="5dp"
+                    android:text="@string/data_pelanggan"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"/>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/btnTentangAplikasi"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:strokeWidth="0.5dp"
+            app:strokeColor="@color/black"
+            android:backgroundTint="@color/yellow_primary"
+            android:layout_marginTop="25dp"
+            android:elevation="4dp"
             android:minHeight="75dp"
-            android:paddingStart="30dp"
-            android:paddingEnd="0dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:orientation="horizontal">
+            app:cardCornerRadius="10dp"
+            app:cardElevation="4dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/tvElaundry"
+            app:layout_constraintTop_toBottomOf="@id/btnDataPelanggan">
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="wrap_content"
-                android:minWidth="70dp"
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginEnd="10dp"
-                android:background="@drawable/ic_about_icon"/>
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:fontFamily="@font/poppins_medium"
                 android:minHeight="75dp"
-                android:gravity="center_vertical"
-                android:layout_marginStart="5dp"
-                android:text="@string/tentang_naplikasi"
-                android:textColor="@color/black"
-                android:textSize="20sp"/>
-        </androidx.appcompat.widget.LinearLayoutCompat>
+                android:paddingStart="30dp"
+                android:paddingEnd="0dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:orientation="horizontal">
 
-    </com.google.android.material.card.MaterialCardView>
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:minWidth="70dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/ic_about_icon"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/poppins_medium"
+                    android:minHeight="75dp"
+                    android:gravity="center_vertical"
+                    android:layout_marginStart="5dp"
+                    android:text="@string/tentang_naplikasi"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"/>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+</ScrollView>
