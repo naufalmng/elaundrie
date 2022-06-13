@@ -154,7 +154,17 @@ class DataPelangganFragment : Fragment() {
                             it
                         )
                     )
-                } else viewModel.deleteData(it.id.toString())
+                } else {
+                    val builder: AlertDialog.Builder = AlertDialog.Builder(requireContext(),R.style.AlertDialogTheme)
+                    builder.setTitle("Hapus data ${it.nama} ?")
+                    builder.setNegativeButton("Tidak") { dialog, i ->
+                        dialog.dismiss()
+                    }
+                    builder.setPositiveButton("Ya") { dialog, i ->
+                        viewModel.deleteData(it.id.toString())
+                        dialog.dismiss()
+                    }.create().show()
+                }
             }
         })
         dataPelangganGridAdapter.setListener(object : DataPelangganListener {
