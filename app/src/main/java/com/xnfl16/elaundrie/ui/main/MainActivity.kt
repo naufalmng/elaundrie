@@ -1,17 +1,17 @@
     package com.xnfl16.elaundrie.ui.main
 
 import android.os.Bundle
-import android.widget.ProgressBar
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
-import androidx.navigation.NavDestination
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import com.xnfl16.elaundrie.R
-import com.xnfl16.elaundrie.core.data.network.State
+import com.xnfl16.elaundrie.core.data.source.network.State
 import com.xnfl16.elaundrie.utils.LoadingDialog
 import com.xnfl16.elaundrie.utils.NetworkConnectivity
+
 
 
     class MainActivity : AppCompatActivity() {
@@ -48,7 +48,7 @@ import com.xnfl16.elaundrie.utils.NetworkConnectivity
                     loadingDialog.dismiss()
 
                 }else{
-                    loadingDialog.start(State.FAILED)
+                    Toast.makeText(this, this.getString(R.string.tidak_ada_koneksi_internet), Toast.LENGTH_LONG).show()
                 }
             }
         }

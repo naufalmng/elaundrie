@@ -48,35 +48,54 @@
         app:layout_constraintTop_toTopOf="@id/tvDataPelanggan"
         app:layout_constraintBottom_toBottomOf="@id/tvDataPelanggan"/>
 
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:clipToPadding="false"
-        tools:listitem="@layout/item_laundry"
-        android:nestedScrollingEnabled="true"
-        android:paddingBottom="16dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvDataPelanggan"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintBottom_toBottomOf="parent">
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/rvLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewGrid"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:clipToPadding="false"
-        android:paddingBottom="16dp"
-        tools:listitem="@layout/item_laundry_grid"
-        android:nestedScrollingEnabled="true"
-        app:spanCount="2"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnRemove"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                tools:listitem="@layout/item_laundry"
+                android:nestedScrollingEnabled="true"
+                android:paddingBottom="16dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvDataPelanggan"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewGrid"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:paddingBottom="16dp"
+                tools:listitem="@layout/item_laundry_grid"
+                android:nestedScrollingEnabled="true"
+                app:spanCount="2"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btnRemove"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnAdd"

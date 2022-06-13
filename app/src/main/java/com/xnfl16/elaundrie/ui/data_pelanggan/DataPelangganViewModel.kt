@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.xnfl16.elaundrie.core.data.model.Pelanggan
+import com.xnfl16.elaundrie.core.data.source.model.Pelanggan
 import com.xnfl16.elaundrie.utils.getCurrentTime
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -38,9 +38,6 @@ class DataPelangganViewModel() : ViewModel() {
 
     private var _dataPelanggan = MutableLiveData<ArrayList<Pelanggan>>()
     val dataPelanggan: LiveData<ArrayList<Pelanggan>> get() = (_dataPelanggan)
-
-    private var _isSearchSuccess = MutableLiveData<Boolean>()
-    val isSearchSuccess: LiveData<Boolean> get() = (_isSearchSuccess)
 
 
     init {
@@ -140,9 +137,9 @@ class DataPelangganViewModel() : ViewModel() {
 
     }
 
-    private fun initDataPelanggan() {
+    fun initDataPelanggan() {
         val dataList: ArrayList<Pelanggan> = arrayListOf()
-
+        _dataPelanggan.value?.clear()
         viewModelScope.launch(Dispatchers.IO) {
             _errorMsg.postValue(null)
             db.collection("Pelanggan").addSnapshotListener { snapshot, e ->
@@ -230,7 +227,6 @@ class DataPelangganViewModel() : ViewModel() {
         val dataList: ArrayList<Pelanggan> = arrayListOf()
 
         viewModelScope.launch(Dispatchers.IO) {
-            _isSearchSuccess.postValue(false)
             db.collection("Pelanggan").whereEqualTo("nama", s)
                 .get()
                 .addOnCompleteListener {
@@ -253,7 +249,6 @@ class DataPelangganViewModel() : ViewModel() {
                 }
                 .addOnFailureListener {
                     Toast.makeText(ctx, "Searching failed..", Toast.LENGTH_SHORT).show()
-                    _isSearchSuccess.postValue(false)
                 }
         }
 

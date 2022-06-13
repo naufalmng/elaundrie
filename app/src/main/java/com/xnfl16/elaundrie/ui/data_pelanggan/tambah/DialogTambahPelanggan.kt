@@ -1,18 +1,15 @@
 package com.xnfl16.elaundrie.ui.data_pelanggan.tambah
 
 import android.app.Activity
-import android.content.Context
 import android.text.TextUtils
 import android.view.Window
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.xnfl16.elaundrie.R
-import com.xnfl16.elaundrie.core.data.network.State
 import com.xnfl16.elaundrie.databinding.FragmentBottomSheetInsertBinding
 import com.xnfl16.elaundrie.ui.data_pelanggan.DataPelangganViewModel
 import com.xnfl16.elaundrie.utils.enableOnClickAnimation
-import com.xnfl16.elaundrie.utils.showToast
 
 class DialogTambahPelanggan(private val fm: Fragment, private val activity: Activity, private val viewModel: DataPelangganViewModel) {
 

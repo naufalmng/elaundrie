@@ -9,7 +9,7 @@ import com.itextpdf.text.pdf.BaseFont
 import com.itextpdf.text.pdf.PdfWriter
 import com.itextpdf.text.pdf.draw.LineSeparator
 import com.itextpdf.text.pdf.draw.VerticalPositionMark
-import com.xnfl16.elaundrie.core.data.model.Pelanggan
+import com.xnfl16.elaundrie.core.data.source.model.Pelanggan
 import java.io.File
 import java.io.FileOutputStream
 import java.lang.Exception

@@ -9,10 +9,10 @@
     <string name="e_laundrie">E-Laundrie</string>
     <string name="tentang_fragment">Tentang Aplikasi</string>
     <string name="tentang_naplikasi">Tentang Aplikasi</string>
-    <string name="copyright">E-Laundrie merupakan sebuah aplikasi android untuk menyimpan data laundry customer sehingga seseorang dapat menambah,menyunting,dan menghapus data laundry customer.\n\nAplikasi ini dibuat untuk assesment mobpro. Dapatkan sourcecodenya di https://github.com/naufalmng/elaundrie\n\nCopyright © 2022 M Naufal Hanif.\nAll rights reserved.</string>
     <string name="_8942">⋮</string>
     <string name="jumlah_1_s">Jumlah Laundry: %1$s</string>
     <string name="jumlah_laundry">Jumlah : %1$s Kg</string>
+    <string name="gagal_lanjut">Proses dapat dilanjutkan setelah lampu indikator berwarna hijau.</string>
     <string-array name="item_status_pembayaran">
         <item>Lunas</item>
         <item>Belum Bayar</item>
@@ -45,6 +45,7 @@
     <string name="tv_alamat">: %1$s</string>
     <string name="tv_jumlah">: %1$s Kg</string>
     <string name="tv_diskon">: %1$s</string>
+    <string name="tidak_ada_koneksi_internet">Tidak ada koneksi internet !</string>
     <string name="tv_layanan">: %1$s</string>
     <string name="tv_status">: %1$s</string>
     <string name="tv_total">: Rp.%1$s</string>

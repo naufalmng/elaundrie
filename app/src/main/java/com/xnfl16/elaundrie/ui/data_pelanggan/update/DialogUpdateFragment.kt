@@ -13,8 +13,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.xnfl16.elaundrie.R
-import com.xnfl16.elaundrie.core.data.model.Pelanggan
-import com.xnfl16.elaundrie.core.data.network.State
+import com.xnfl16.elaundrie.core.data.source.model.Pelanggan
+import com.xnfl16.elaundrie.core.data.source.network.State
 import com.xnfl16.elaundrie.databinding.FragmentDialogUpdateBinding
 import com.xnfl16.elaundrie.ui.data_pelanggan.DataPelangganViewModel
 import com.xnfl16.elaundrie.ui.data_pelanggan.adapter.DataPelangganAdapter

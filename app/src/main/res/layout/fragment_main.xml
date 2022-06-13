@@ -36,6 +36,17 @@
             app:layout_constraintStart_toStartOf="@id/tvElaundry"
             app:layout_constraintTop_toBottomOf="@id/tvElaundry" />
 
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/networkIndicator"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@drawable/connectivity_indicator"
+            android:backgroundTint="@color/merah"
+            app:layout_constraintBottom_toBottomOf="@+id/tvWelcome"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintTop_toTopOf="@+id/tvWelcome" />
+
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/btnDataPelanggan"
             android:layout_width="0dp"
@@ -134,9 +145,32 @@
 
         </com.google.android.material.card.MaterialCardView>
 
+        <com.aemerse.slider.ImageCarousel
+            android:id="@+id/carouselView"
+            android:layout_width="0dp"
+            android:layout_height="300dp"
+            android:layout_margin="16dp"
+            app:showIndicator="false"
+            app:autoPlay="true"
+            app:showBottomShadow="false"
+            app:showTopShadow="false"
+            app:imagePlaceholder="@mipmap/ic_launcher"
+            app:autoPlayDelay="3000"
+            app:autoWidthFixing="true"
+            app:touchToPause="false"
+            app:infiniteCarousel="true"
+            app:scaleOnScroll="false"
+            app:carouselType="BLOCK"
+            app:carouselGravity="CENTER"
+            app:showNavigationButtons="false"
+            app:imageScaleType="fitXY"
+            app:showCaption="false"
+            android:background="?android:attr/selectableItemBackground"
+            app:layout_constraintTop_toBottomOf="@id/btnTentangAplikasi"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-
 </ScrollView>

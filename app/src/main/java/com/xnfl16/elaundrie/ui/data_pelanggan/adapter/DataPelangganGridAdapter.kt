@@ -6,15 +6,11 @@ import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Filter
-import android.widget.Filterable
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.xnfl16.elaundrie.R
-import com.xnfl16.elaundrie.core.data.model.Pelanggan
-import com.xnfl16.elaundrie.databinding.ItemLaundryBinding
+import com.xnfl16.elaundrie.core.data.source.model.Pelanggan
 import com.xnfl16.elaundrie.databinding.ItemLaundryGridBinding
-import java.util.*
 import kotlin.collections.ArrayList
 
 class DataPelangganGridAdapter(val ctx: Context): RecyclerView.Adapter<DataPelangganGridAdapter.ViewHolder>() {

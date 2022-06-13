@@ -2,7 +2,6 @@ package com.xnfl16.elaundrie.ui.data_pelanggan
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
-import android.content.DialogInterface
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
@@ -16,14 +15,13 @@ import androidx.navigation.fragment.findNavController
 import com.xnfl16.elaundrie.R
 import com.xnfl16.elaundrie.core.data.DataStorePreferences
 import com.xnfl16.elaundrie.core.data.dataStore
-import com.xnfl16.elaundrie.core.data.model.Pelanggan
-import com.xnfl16.elaundrie.core.data.network.State
+import com.xnfl16.elaundrie.core.data.source.model.Pelanggan
+import com.xnfl16.elaundrie.core.data.source.network.State
 import com.xnfl16.elaundrie.databinding.FragmentDataPelangganBinding
 import com.xnfl16.elaundrie.ui.data_pelanggan.adapter.DataPelangganAdapter
 import com.xnfl16.elaundrie.ui.data_pelanggan.adapter.DataPelangganGridAdapter
 import com.xnfl16.elaundrie.ui.data_pelanggan.adapter.DataPelangganListener
 import com.xnfl16.elaundrie.ui.data_pelanggan.tambah.DialogTambahPelanggan
-import com.xnfl16.elaundrie.ui.data_pelanggan.update.DialogUpdateFragment
 import com.xnfl16.elaundrie.utils.LoadingDialog
 import com.xnfl16.elaundrie.utils.enableOnClickAnimation
 import com.xnfl16.elaundrie.utils.showToast
@@ -53,7 +51,6 @@ class DataPelangganFragment : Fragment() {
     private lateinit var dataPelangganAdapter: DataPelangganAdapter
     private lateinit var dataPelangganGridAdapter: DataPelangganGridAdapter
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -75,30 +72,17 @@ class DataPelangganFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.swipeRefreshLayout.isRefreshing = true
+        if(binding.swipeRefreshLayout.isRefreshing){
+            loading.start(State.LOADING)
+        }else loading.dismiss()
+
         setupListeners()
         setupObservers()
         setupRecyclerView()
         setupOnItemClick()
         setupDataStorePref()
-//        setupSearchViewFilter()
     }
-
-//    private fun setupSearchViewFilter() {
-//        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
-//            override fun onQueryTextSubmit(p0: String?): Boolean {
-//                return false
-//            }
-//
-//            override fun onQueryTextChange(newText: String?): Boolean {
-//                dataPelangganAdapter.filter.filter(newText)
-////                if(isLinearLayoutManager){
-////
-////                }else dataPelangganGridAdapter.filter.filter(newText)
-//
-//                return false
-//            }
-//        })
-//    }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.layout_menu, menu)
@@ -212,6 +196,7 @@ class DataPelangganFragment : Fragment() {
                 loading.start(State.SUCCESS)
             } else {
                 loading.dismiss()
+                binding.swipeRefreshLayout.isRefreshing = false
                 requireActivity().showToast(getString(R.string.data_berhasil_ditambah))
             }
         }
@@ -221,12 +206,15 @@ class DataPelangganFragment : Fragment() {
                 loading.start(State.SUCCESS)
             } else {
                 loading.dismiss()
+                binding.swipeRefreshLayout.isRefreshing = false
                 requireActivity().showToast(getString(R.string.data_berhasil_dihapus))
             }
         }
 
         viewModel.errorMsg.observe(viewLifecycleOwner) {
             if (it != null) {
+                binding.swipeRefreshLayout.isRefreshing = false
+                loading.dismiss()
                 Toast.makeText(requireContext(), "Error: $it", Toast.LENGTH_SHORT).show()
             }
         }
@@ -236,13 +224,16 @@ class DataPelangganFragment : Fragment() {
                 loading.start(State.SUCCESS)
             } else {
                 loading.dismiss()
+                binding.swipeRefreshLayout.isRefreshing = false
                 requireActivity().showToast(getString(R.string.data_berhasil_diupdate))
             }
         }
 
         viewModel.isInsertSuccess.observe(viewLifecycleOwner){
             if(it==true){
+                binding.swipeRefreshLayout.isRefreshing = false
                 dialogTambahPelanggan.dismiss()
+                loading.dismiss()
             }
         }
 
@@ -250,12 +241,24 @@ class DataPelangganFragment : Fragment() {
             if (it != null) {
                 dataPelangganAdapter.setData(it)
                 dataPelangganGridAdapter.setData(it)
-            } else Toast.makeText(requireContext(), "Gagal mendapatkan data", Toast.LENGTH_SHORT)
-                .show()
+                binding.rvLayout.visibility = View.VISIBLE
+                binding.swipeRefreshLayout.isRefreshing = false
+                loading.dismiss()
+            } else {
+                Toast.makeText(requireContext(), "Gagal mendapatkan data", Toast.LENGTH_SHORT)
+                    .show()
+                binding.swipeRefreshLayout.isRefreshing = false
+                loading.dismiss()
+            }
         }
     }
     @SuppressLint("NotifyDataSetChanged")
     private fun setupListeners() {
+
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            binding.rvLayout.visibility = View.GONE
+            viewModel.initDataPelanggan()
+        }
 
         binding.searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(p0: String?): Boolean {

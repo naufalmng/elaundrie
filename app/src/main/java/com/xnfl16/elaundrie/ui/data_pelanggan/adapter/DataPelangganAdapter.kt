@@ -1,26 +1,15 @@
 package com.xnfl16.elaundrie.ui.data_pelanggan.adapter
 
-import android.Manifest
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Filter
-import android.widget.Filterable
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.karumi.dexter.Dexter
-import com.karumi.dexter.PermissionToken
-import com.karumi.dexter.listener.PermissionDeniedResponse
-import com.karumi.dexter.listener.PermissionGrantedResponse
-import com.karumi.dexter.listener.PermissionRequest
-import com.karumi.dexter.listener.single.PermissionListener
 import com.xnfl16.elaundrie.R
-import com.xnfl16.elaundrie.core.data.model.Pelanggan
+import com.xnfl16.elaundrie.core.data.source.model.Pelanggan
 import com.xnfl16.elaundrie.databinding.ItemLaundryBinding
-import java.util.*
 import kotlin.collections.ArrayList
 
 

@@ -2,18 +2,43 @@
 
 package com.xnfl16.elaundrie.utils
 
-import android.animation.AnimatorSet
-import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.Context
+import android.graphics.Color
+import android.os.Handler
+import android.os.Looper
 import android.view.MotionEvent
 import android.view.View
-import android.view.View.OnTouchListener
 import android.widget.Toast
+import androidx.appcompat.content.res.AppCompatResources
+import androidx.appcompat.widget.AppCompatImageView
+import androidx.core.os.postDelayed
+import com.google.android.material.snackbar.Snackbar
+import com.xnfl16.elaundrie.R
 import java.text.SimpleDateFormat
 import java.util.*
 
+fun AppCompatImageView.setConnectivityStatus(context: Context, isConnected: Boolean){
+    val resId = if(isConnected) R.color.hijau else R.color.merah
+    backgroundTintList = AppCompatResources.getColorStateList(context,resId)
+}
 
+@SuppressLint("InflateParams")
+fun showCustomSnackbar(ctx:Activity, v:View){
+    val snackbar = Snackbar.make(v,"",Snackbar.LENGTH_SHORT)
+    val customSnackbarView = ctx.layoutInflater.inflate(R.layout.item_info_gagal_lanjut,null)
+    snackbar.view.setBackgroundColor(Color.TRANSPARENT)
+    val snackBarLayout = snackbar.view as Snackbar.SnackbarLayout
+    snackBarLayout.setPadding(0,0,0,0)
+    snackBarLayout.addView(customSnackbarView,0)
+    snackbar.show()
+    if(snackbar.isShown){
+        Handler(Looper.getMainLooper()).postDelayed({
+           snackbar.dismiss()
+        },2500)
+    }
+}
 @SuppressLint("ClickableViewAccessibility")
 fun View.enableOnClickAnimation() {
     val reducedvalue = 0.95F
