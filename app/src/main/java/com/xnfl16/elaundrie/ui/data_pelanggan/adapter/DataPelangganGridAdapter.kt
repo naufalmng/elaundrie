@@ -88,7 +88,7 @@ class DataPelangganGridAdapter(val ctx: Context): RecyclerView.Adapter<DataPelan
             }.create().show()
 
             if (v != null) {
-                Log.d("DataPelangganGridAdapter: ","${v.toString()} is clicked")
+                Log.d("DataPelangganGridAdapter: ","$v is clicked")
             }
             true
         }

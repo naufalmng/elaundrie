@@ -29,7 +29,7 @@ class LoadingDialog(private val activity: Activity) {
         builder.setView(dialogView)
         builder.setCancelable(false)
         progressDialog = builder.create()
-        progressDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT));
+        progressDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         progressDialog.show()
         progressDialog.window?.setLayout(w,WindowManager.LayoutParams.WRAP_CONTENT)
         progressDialog.window?.setGravity(Gravity.CENTER)

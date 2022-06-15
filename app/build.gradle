@@ -108,4 +108,7 @@ dependencies {
 
     //Carousel
     implementation 'com.github.akshaaatt:Sliding-Carousel:1.0.4'
+
+    // WorkManager
+    implementation 'androidx.work:work-runtime-ktx:2.7.1'
 }

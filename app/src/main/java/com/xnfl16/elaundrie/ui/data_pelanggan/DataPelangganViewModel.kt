@@ -1,5 +1,6 @@
 package com.xnfl16.elaundrie.ui.data_pelanggan
 
+import android.app.Application
 import android.content.Context
 import android.util.Log
 import android.widget.Toast
@@ -7,17 +8,21 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.work.*
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.xnfl16.elaundrie.core.data.source.model.Pelanggan
+import com.xnfl16.elaundrie.core.data.source.network.ElaundrieWorker
+import com.xnfl16.elaundrie.utils.Constant
 import com.xnfl16.elaundrie.utils.getCurrentTime
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.math.BigInteger
 import java.util.*
+import java.util.concurrent.TimeUnit
 
 
-class DataPelangganViewModel() : ViewModel() {
+class DataPelangganViewModel : ViewModel() {
     companion object {
         const val TAG = "DataPelangganViewModel"
     }
@@ -68,7 +73,7 @@ class DataPelangganViewModel() : ViewModel() {
             "total" to total
         )
 
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(Dispatchers.IO)  {
             _errorMsg.postValue(null)
             _isInsertSuccess.postValue(false)
             db.collection("Pelanggan").document(id).set(data)

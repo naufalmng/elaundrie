@@ -15,7 +15,7 @@ class TentangViewModel(private val repo: AppRepository) : ViewModel() {
         viewModelScope.launch {
             val response = repo.getCopyright()
             if(response.isSuccessful){
-                let() {
+                let {
                     _copyrightString.postValue(response.body()?.copyright!!)
                 }
             }

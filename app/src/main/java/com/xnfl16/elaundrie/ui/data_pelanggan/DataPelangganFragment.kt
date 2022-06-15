@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.*
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
+import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -65,9 +66,6 @@ class DataPelangganFragment : Fragment() {
         super.onCreate(savedInstanceState)
         dataPelangganAdapter = DataPelangganAdapter(requireContext())
         dataPelangganGridAdapter = DataPelangganGridAdapter(requireContext())
-        lifecycleScope.launch {
-
-        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

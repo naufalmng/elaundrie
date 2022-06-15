@@ -24,10 +24,6 @@ class SplashScreenFragment : Fragment() {
 //    private var fragmentPref: String? = null
 //    private lateinit var dataStorePref: DataStorePreferences
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_splash_screen, container, false)

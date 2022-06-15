@@ -4,8 +4,12 @@ package com.xnfl16.elaundrie.utils
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.app.Application
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.content.Context
 import android.graphics.Color
+import android.os.Build
 import android.os.Handler
 import android.os.Looper
 import android.view.MotionEvent
@@ -14,15 +18,21 @@ import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.os.postDelayed
+import androidx.lifecycle.ViewModel
+import androidx.work.*
 import com.google.android.material.snackbar.Snackbar
 import com.xnfl16.elaundrie.R
+import com.xnfl16.elaundrie.core.data.source.network.ElaundrieWorker
+import com.xnfl16.elaundrie.utils.Constant.CHANNEL_ID
 import java.text.SimpleDateFormat
 import java.util.*
+import java.util.concurrent.TimeUnit
 
 fun AppCompatImageView.setConnectivityStatus(context: Context, isConnected: Boolean){
     val resId = if(isConnected) R.color.hijau else R.color.merah
     backgroundTintList = AppCompatResources.getColorStateList(context,resId)
 }
+
 
 @SuppressLint("InflateParams")
 fun showCustomSnackbar(ctx:Activity, v:View){
@@ -62,7 +72,7 @@ fun Activity.showToast(title: String){
 
 fun getCurrentTime(): String {
     val formatter = SimpleDateFormat("dd MMM yyyy HH:mm:ss aa ", Locale.getDefault())
-    val c = Calendar.getInstance().getTime();
+    val c = Calendar.getInstance().time
     return formatter.format(c)
 }
 //fun Activity.snackbar(v: View,title: String){
