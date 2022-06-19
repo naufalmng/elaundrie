@@ -9,6 +9,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.xnfl16.elaundrie.R
 import com.xnfl16.elaundrie.databinding.FragmentBottomSheetInsertBinding
 import com.xnfl16.elaundrie.ui.data_pelanggan.DataPelangganViewModel
+import com.xnfl16.elaundrie.utils.NetworkConnectivity
 import com.xnfl16.elaundrie.utils.enableOnClickAnimation
 
 class DialogTambahPelanggan(private val fm: Fragment, private val activity: Activity, private val viewModel: DataPelangganViewModel) {
@@ -45,6 +46,13 @@ class DialogTambahPelanggan(private val fm: Fragment, private val activity: Acti
         }
 
         dialogTambahBinding.btnTambah.setOnClickListener {
+            val networkConnection = NetworkConnectivity(activity.applicationContext)
+            networkConnection.observe(fm){
+                if(it!=true){
+                    Toast.makeText(activity, fm.getString(R.string.tidak_ada_koneksi_internet), Toast.LENGTH_SHORT).show()
+                    return@observe
+                }
+            }
             if(isFormValid()){
                 val nama = dialogTambahBinding.etNama.text.toString()
                 val jumlah = dialogTambahBinding.etJumlah.text.toString().toDouble()
@@ -69,28 +77,28 @@ class DialogTambahPelanggan(private val fm: Fragment, private val activity: Acti
         val selectedLayanan = dialogTambahBinding.spinnerLayanan.selectedIndex
 
         if (TextUtils.isEmpty(dialogTambahBinding.etNama.text)) {
-            Toast.makeText(fm.requireContext(), "Nama tidak boleh kosong !", Toast.LENGTH_SHORT).show()
+            Toast.makeText(fm.requireContext(), activity.getString(R.string.validasi_nama), Toast.LENGTH_SHORT).show()
             return false
         }
         if (TextUtils.isEmpty(dialogTambahBinding.etJumlah.text)) {
-            Toast.makeText(fm.requireContext(), "Jumlah tidak boleh kosong !", Toast.LENGTH_SHORT)
+            Toast.makeText(fm.requireContext(), activity.getString(R.string.validasi_jumlah), Toast.LENGTH_SHORT)
                 .show()
             return false
         }
         if (TextUtils.isEmpty(dialogTambahBinding.etDiskon.text)) {
-            Toast.makeText(fm.requireContext(), "Diskon tidak boleh kosong !", Toast.LENGTH_SHORT)
+            Toast.makeText(fm.requireContext(), activity.getString(R.string.validasi_diskon), Toast.LENGTH_SHORT)
                 .show()
             return false
         }
         if (TextUtils.isEmpty(dialogTambahBinding.etAlamat.text)) {
-            Toast.makeText(fm.requireContext(), "Alamat tidak boleh kosong !", Toast.LENGTH_SHORT)
+            Toast.makeText(fm.requireContext(), activity.getString(R.string.validasi_alamat), Toast.LENGTH_SHORT)
                 .show()
             return false
         }
         if (selectedStatus == -1) {
             Toast.makeText(
                 fm.requireContext(),
-                "Status pembayaran tidak boleh kosong !",
+                activity.getString(R.string.validasi_status_bayar),
                 Toast.LENGTH_SHORT
             ).show()
             return false
@@ -98,7 +106,7 @@ class DialogTambahPelanggan(private val fm: Fragment, private val activity: Acti
         if (selectedLayanan == -1) {
             Toast.makeText(
                 fm.requireContext(),
-                "Layanan tidak boleh kosong !",
+                activity.getString(R.string.validasi_layanan),
                 Toast.LENGTH_SHORT
             ).show()
             return false

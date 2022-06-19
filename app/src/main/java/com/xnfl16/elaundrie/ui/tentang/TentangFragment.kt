@@ -44,7 +44,6 @@ class TentangFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel.initCopyrightString()
-        loading.start(State.LOADING)
 
     }
 
@@ -67,7 +66,20 @@ class TentangFragment : Fragment() {
         viewModel.copyrightString.observe(this@TentangFragment){
             if(it!=null){
                 binding.textView.text = it.toString()
-                loading.dismiss()
+            }
+        }
+
+        viewModel.status.observe(this){state->
+            when(state!!){
+                State.LOADING -> {
+                    loading.start(State.LOADING)
+                }
+                State.SUCCESS -> {
+                    loading.dismiss()
+                }
+                State.FAILED -> {
+                    loading.start(State.FAILED)
+                }
             }
         }
     }

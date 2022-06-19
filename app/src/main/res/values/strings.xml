@@ -28,9 +28,14 @@
     <string name="diskon">Diskon %</string>
     <string name="discount">Diskon %: </string>
     <string name="loading">Loading...</string>
-    <string name="data_berhasil_ditambah">Data Berhasil ditambah</string>
-    <string name="data_berhasil_diupdate">Data Berhasil diupdate</string>
-    <string name="data_berhasil_dihapus">Data Berhasil dihapus</string>
+    <string name="data_berhasil_ditambah">Data berhasil ditambah</string>
+    <string name="data_gagal_ditambah">Data gagal ditambah</string>
+    <string name="data_berhasil_diupdate">Data berhasil diupdate</string>
+    <string name="data_gagal_diupdate">Data gagal diupdate</string>
+    <string name="data_berhasil_dihapus">Data berhasil dihapus</string>
+    <string name="data_gagal_dihapus">Data gagal dihapus</string>
+    <string name="semua_data_berhasil_dihapus">Semua data berhasil dihapus</string>
+    <string name="semua_data_gagal_dihapus">Semua data gagal dihapus</string>
     <string name="total_1s">Total: Rp.%1$s</string>
     <string name="poppins_regular">res/font/poppins_regular.ttf</string>
     <string name="utf_8">UTF-8</string>
@@ -68,5 +73,12 @@
     <string name="action_switch_layout">Action Switch Layout</string>
     <string name="nama_1_s">Nama: %1$s</string>
     <string name="pilih_layanan">Pilih layanan</string>
+    <string name="validasi_nama">Nama tidak boleh kosong !</string>
+    <string name="validasi_jumlah">Jumlah tidak boleh kosong !</string>
+    <string name="validasi_diskon">Diskon tidak boleh kosong !</string>
+    <string name="validasi_alamat">Alamat tidak boleh kosong !</string>
+    <string name="validasi_status_bayar">Status pembayaran tidak boleh kosong !</string>
+    <string name="validasi_layanan">Layanan tidak boleh kosong !</string>
+
 
 </resources>

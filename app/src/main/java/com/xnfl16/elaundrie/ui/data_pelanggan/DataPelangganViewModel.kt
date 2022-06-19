@@ -13,6 +13,7 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.xnfl16.elaundrie.core.data.source.model.Pelanggan
 import com.xnfl16.elaundrie.core.data.source.network.ElaundrieWorker
+import com.xnfl16.elaundrie.core.data.source.network.State
 import com.xnfl16.elaundrie.utils.Constant
 import com.xnfl16.elaundrie.utils.getCurrentTime
 import kotlinx.coroutines.Dispatchers
@@ -29,14 +30,8 @@ class DataPelangganViewModel : ViewModel() {
 
     private val db = Firebase.firestore
 
-    private var _isInsertSuccess = MutableLiveData<Boolean>()
-    val isInsertSuccess: LiveData<Boolean> get() = (_isInsertSuccess)
-
-    private var _isUpdateSuccess = MutableLiveData<Boolean>()
-    val isUpdateSuccess: LiveData<Boolean> get() = (_isUpdateSuccess)
-
-    private var _isDeleteSuccess = MutableLiveData<Boolean>()
-    val isDeleteSuccess: LiveData<Boolean> get() = (_isDeleteSuccess)
+    private var _status = MutableLiveData<State>()
+    val status: LiveData<State> get() = (_status)
 
     private var _errorMsg = MutableLiveData<String?>()
     val errorMsg: LiveData<String?> get() = (_errorMsg)
@@ -75,15 +70,15 @@ class DataPelangganViewModel : ViewModel() {
 
         viewModelScope.launch(Dispatchers.IO)  {
             _errorMsg.postValue(null)
-            _isInsertSuccess.postValue(false)
+            _status.postValue(State.LOADING)
             db.collection("Pelanggan").document(id).set(data)
                 .addOnSuccessListener { documentRef ->
-                    _isInsertSuccess.postValue(true)
+                    _status.postValue(State.INSERT_SUCCESS)
                 }
 
                 .addOnFailureListener { e ->
                     Log.d("dbsitory: ", "Error adding document", e)
-                    _isInsertSuccess.postValue(false)
+                    _status.postValue(State.INSERT_FAILED)
                     _errorMsg.postValue(e.toString())
                 }
         }
@@ -92,14 +87,14 @@ class DataPelangganViewModel : ViewModel() {
     fun deleteData(docId: String) {
         viewModelScope.launch(Dispatchers.IO) {
             _errorMsg.postValue(null)
-            _isDeleteSuccess.postValue(false)
+            _status.postValue(State.LOADING)
             db.collection("Pelanggan").document(docId).delete()
                 .addOnSuccessListener {
-                    _isDeleteSuccess.postValue(true)
+                    _status.postValue(State.DELETE_SUCCESS)
                 }
                 .addOnFailureListener { e ->
                     Log.d("dbsitory: ", "Error adding document", e)
-                    _isDeleteSuccess.postValue(false)
+                    _status.postValue(State.DELETE_FAILED)
                     _errorMsg.postValue(e.toString())
                 }
         }
@@ -118,7 +113,7 @@ class DataPelangganViewModel : ViewModel() {
 
         viewModelScope.launch(Dispatchers.IO) {
             _errorMsg.postValue(null)
-            _isUpdateSuccess.postValue(false)
+            _status.postValue(State.LOADING)
             db.collection("Pelanggan").document(data.id.toString()).update(
                 "tanggal", data.tanggalDanWaktu,
                 "nama", data.nama,
@@ -130,12 +125,12 @@ class DataPelangganViewModel : ViewModel() {
                 "total", total
             )
                 .addOnSuccessListener { documentRef ->
-                    _isUpdateSuccess.postValue(true)
+                    _status.postValue(State.UPDATE_SUCCESS)
                 }
 
                 .addOnFailureListener { e ->
                     Log.d("dbsitory: ", "Error adding document", e)
-                    _isUpdateSuccess.postValue(true)
+                    _status.postValue(State.UPDATE_FAILED)
                     _errorMsg.postValue(e.toString())
                 }
         }
@@ -145,12 +140,14 @@ class DataPelangganViewModel : ViewModel() {
     fun initDataPelanggan() {
         val dataList: ArrayList<Pelanggan> = arrayListOf()
         _dataPelanggan.value?.clear()
+        _status.postValue(State.LOADING)
         viewModelScope.launch(Dispatchers.IO) {
             _errorMsg.postValue(null)
             db.collection("Pelanggan").addSnapshotListener { snapshot, e ->
                 if (e != null) {
                     Log.w(TAG, "Listen Failed", e)
                     _errorMsg.postValue(e.toString())
+                    _status.postValue(State.FAILED)
                     return@addSnapshotListener
                 }
                 if (snapshot != null) {
@@ -170,6 +167,7 @@ class DataPelangganViewModel : ViewModel() {
                         dataList.add(pelanggan)
                     }
                     _dataPelanggan.postValue(dataList)
+                    _status.postValue(State.SUCCESS)
                 }
             }
         }
@@ -262,16 +260,16 @@ class DataPelangganViewModel : ViewModel() {
     fun deleteAllData() {
         viewModelScope.launch(Dispatchers.IO) {
             _errorMsg.postValue(null)
-            _isDeleteSuccess.postValue(false)
+            _status.postValue(State.LOADING)
             db.collection("Pelanggan").get()
                 .addOnSuccessListener {
                     for (doc in it) {
                         doc.reference.delete()
-                        _isDeleteSuccess.postValue(true)
+                        _status.postValue(State.DELETE_ALL_SUCCESS)
                     }
                 }
                 .addOnFailureListener {
-                    _isDeleteSuccess.postValue(false)
+                    _status.postValue(State.DELETE_ALL_FAILED)
                     _errorMsg.postValue(it.toString())
                 }
         }

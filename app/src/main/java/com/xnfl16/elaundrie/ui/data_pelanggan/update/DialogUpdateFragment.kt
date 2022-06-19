@@ -19,6 +19,7 @@ import com.xnfl16.elaundrie.databinding.FragmentDialogUpdateBinding
 import com.xnfl16.elaundrie.ui.data_pelanggan.DataPelangganViewModel
 import com.xnfl16.elaundrie.ui.data_pelanggan.adapter.DataPelangganAdapter
 import com.xnfl16.elaundrie.utils.LoadingDialog
+import com.xnfl16.elaundrie.utils.NetworkConnectivity
 import com.xnfl16.elaundrie.utils.enableOnClickAnimation
 import com.xnfl16.elaundrie.utils.showToast
 
@@ -67,72 +68,87 @@ class DialogUpdateFragment: DialogFragment() {
         binding.spinnerStatus.lifecycleOwner = viewLifecycleOwner
         binding.btnUpdate.enableOnClickAnimation()
         binding.btnUpdate.setOnClickListener{
-            if(isFormValid()){
-                val nama = binding.etNama.text
-                Log.d("DialogUpdateFragment: ",nama.toString())
-                val alamat = binding.etAlamat.text
-                val diskon = binding.etDiskon.text
-                val jumlah = binding.etJumlah.text
-                var status = if(binding.spinnerStatus.selectedIndex == 1) "Belum Bayar" else "Lunas"
-                val layanan = when(binding.spinnerLayanan.selectedIndex){
-                    0 -> "Flash 1 Hour"
-                    1 -> "Express 1 Day"
-                    else -> "Regular 2 Day"
-                }
+            loading.start(State.LOADING)
+            val networkConnection = NetworkConnectivity(requireActivity().applicationContext)
+            networkConnection.observe(this){
+                if(it!=true){
+                    Toast.makeText(requireContext(), getString(R.string.tidak_ada_koneksi_internet), Toast.LENGTH_SHORT).show()
+                    loading.dismiss()
+                    return@observe
+                }else{
+                    if(isFormValid()){
+                        val nama = binding.etNama.text
+                        Log.d("DialogUpdateFragment: ",nama.toString())
+                        val alamat = binding.etAlamat.text
+                        val diskon = binding.etDiskon.text
+                        val jumlah = binding.etJumlah.text
+                        var status = if(binding.spinnerStatus.selectedIndex == 1) "Belum Bayar" else "Lunas"
+                        val layanan = when(binding.spinnerLayanan.selectedIndex){
+                            0 -> "Flash 1 Hour"
+                            1 -> "Express 1 Day"
+                            else -> "Regular 2 Day"
+                        }
 
-                val data = Pelanggan(
-                    args.dataLaundryPelanggan?.id,
-                    nama.toString(),
-                    alamat.toString(),
-                    args.dataLaundryPelanggan?.tanggalDanWaktu,
-                    jumlah.toString(),
-                    diskon.toString(),
-                    args.dataLaundryPelanggan?.total,
-                    status,
-                    layanan
-                )
-                Log.d("DialogUpdateFragment: ",data.toString())
+                        val data = Pelanggan(
+                            args.dataLaundryPelanggan?.id,
+                            nama.toString(),
+                            alamat.toString(),
+                            args.dataLaundryPelanggan?.tanggalDanWaktu,
+                            jumlah.toString(),
+                            diskon.toString(),
+                            args.dataLaundryPelanggan?.total,
+                            status,
+                            layanan
+                        )
+                        Log.d("DialogUpdateFragment: ",data.toString())
 
-                binding.spinnerStatus.setOnSpinnerItemSelectedListener<String> { _, _, _, text ->
-                    status = text
+                        binding.spinnerStatus.setOnSpinnerItemSelectedListener<String> { _, _, _, text ->
+                            status = text
+                        }
+                        viewModel.updateData(data)
+                    }
                 }
-                viewModel.updateData(data)
             }
+
+
 //            Log.d("DialogUpdateFragment: ",binding.etDiskon.text)
 
         }
 
 
         binding.btnClose.setOnClickListener{
-            findNavController().navigate(R.id.action_dialogUpdateFragment_to_dataPelangganFragment)
+            dismiss()
         }
     }
 
     private fun setupObservers() {
-        viewModel.isUpdateSuccess.observe(viewLifecycleOwner){
-            if (it != true) {
-                loading.start(State.SUCCESS)
-            } else {
-                loading.dismiss()
-                requireActivity().showToast(getString(R.string.data_berhasil_diupdate))
-                dismiss()
+        viewModel.status.observe(this){state->
+            when(state!!){
+
+                State.UPDATE_SUCCESS-> {
+                    loading.dismiss()
+                    dismiss()
+                    requireActivity().showToast(getString(R.string.data_berhasil_diupdate))
+                }
+                State.UPDATE_FAILED -> {
+                    loading.dismiss()
+                    requireActivity().showToast(getString(R.string.data_gagal_diupdate))
+                }
             }
         }
-
 
         viewModel.dataPelanggan.observe(viewLifecycleOwner) {
             if (it != null) {
                 dataPelangganAdapter.setData(it)
-            } else Toast.makeText(requireContext(), "Gagal mendapatkan data", Toast.LENGTH_SHORT)
-                .show()
+            }
         }
     }
 
     private fun showData() {
-        val selectedStatus = if(args.dataLaundryPelanggan?.status == "Belum Bayar") 1 else 0
-        val selectedLayanan = when(args.dataLaundryPelanggan?.status){
-            "Flash 1 Hour" -> 0
-            "Express 1 Day" -> 1
+        val selectedStatus = if(args.dataLaundryPelanggan?.status == resources.getStringArray(R.array.item_status_pembayaran)[1]) 1 else 0
+        val selectedLayanan = when(args.dataLaundryPelanggan?.layanan.toString()){
+            resources.getStringArray(R.array.item_layanan)[0].toString() -> 0
+            resources.getStringArray(R.array.item_layanan)[1].toString() -> 1
             else -> 2
         }
 
@@ -162,28 +178,28 @@ class DialogUpdateFragment: DialogFragment() {
         val selectedLayanan = binding.spinnerLayanan.selectedIndex
 
         if (TextUtils.isEmpty(binding.etNama.text)) {
-            Toast.makeText(requireContext(), "Nama tidak boleh kosong !", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), getString(R.string.validasi_nama), Toast.LENGTH_SHORT).show()
             return false
         }
         if (TextUtils.isEmpty(binding.etJumlah.text)) {
-            Toast.makeText(requireContext(), "Jumlah tidak boleh kosong !", Toast.LENGTH_SHORT)
+            Toast.makeText(requireContext(), getString(R.string.validasi_jumlah), Toast.LENGTH_SHORT)
                 .show()
             return false
         }
         if (TextUtils.isEmpty(binding.etDiskon.text)) {
-            Toast.makeText(requireContext(), "Diskon tidak boleh kosong !", Toast.LENGTH_SHORT)
+            Toast.makeText(requireContext(), getString(R.string.validasi_diskon), Toast.LENGTH_SHORT)
                 .show()
             return false
         }
         if (TextUtils.isEmpty(binding.etAlamat.text)) {
-            Toast.makeText(requireContext(), "Alamat tidak boleh kosong !", Toast.LENGTH_SHORT)
+            Toast.makeText(requireContext(), getString(R.string.validasi_alamat), Toast.LENGTH_SHORT)
                 .show()
             return false
         }
         if (selectedStatus == -1) {
             Toast.makeText(
                 requireContext(),
-                "Status pembayaran tidak boleh kosong !",
+                getString(R.string.validasi_status_bayar),
                 Toast.LENGTH_SHORT
             ).show()
             return false
@@ -191,7 +207,7 @@ class DialogUpdateFragment: DialogFragment() {
         if (selectedLayanan == -1) {
             Toast.makeText(
                 requireContext(),
-                "Layanan tidak boleh kosong !",
+                getString(R.string.validasi_layanan),
                 Toast.LENGTH_SHORT
             ).show()
             return false

@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.*
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
-import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -24,6 +23,7 @@ import com.xnfl16.elaundrie.ui.data_pelanggan.adapter.DataPelangganGridAdapter
 import com.xnfl16.elaundrie.ui.data_pelanggan.adapter.DataPelangganListener
 import com.xnfl16.elaundrie.ui.data_pelanggan.tambah.DialogTambahPelanggan
 import com.xnfl16.elaundrie.utils.LoadingDialog
+import com.xnfl16.elaundrie.utils.NetworkConnectivity
 import com.xnfl16.elaundrie.utils.enableOnClickAnimation
 import com.xnfl16.elaundrie.utils.showToast
 import kotlinx.coroutines.launch
@@ -38,7 +38,9 @@ class DataPelangganFragment : Fragment() {
     private val binding get() = _binding!!
     private var isLinearLayoutManager = true
     private lateinit var dataStorePref: DataStorePreferences
-
+    private val networkConnection by lazy {
+        NetworkConnectivity(requireActivity().applicationContext)
+    }
     private lateinit var dialogTambahPelanggan: DialogTambahPelanggan
 
     private val loading: LoadingDialog by lazy {
@@ -70,11 +72,6 @@ class DataPelangganFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.swipeRefreshLayout.isRefreshing = true
-        if(binding.swipeRefreshLayout.isRefreshing){
-            loading.start(State.LOADING)
-        }else loading.dismiss()
-
         setupListeners()
         setupObservers()
         setupRecyclerView()
@@ -135,57 +132,131 @@ class DataPelangganFragment : Fragment() {
     }
 
 
+    @SuppressLint("FragmentLiveDataObserve")
     private fun setupOnItemClick() {
-        dataPelangganAdapter.setListener(object : DataPelangganListener {
-            override fun onItemClick(it: Pelanggan) {
-                findNavController().navigate(
-                    DataPelangganFragmentDirections.actionDataPelangganFragmentToDialogDetailFragment(
-                        it
-                    )
-                )
-            }
-
-            override fun onItemLongClick(it: Pelanggan, isUpdateOrDelete: String) {
-                if (isUpdateOrDelete == "Update") {
-                    findNavController().navigate(
-                        DataPelangganFragmentDirections.actionDataPelangganFragmentToDialogUpdateFragment(
-                            it
+        networkConnection.observe(this) { isOnline ->
+            dataPelangganAdapter.setListener(object : DataPelangganListener {
+                override fun onItemClick(it: Pelanggan) {
+                    if (isOnline != true) {
+                        Toast.makeText(
+                            requireContext(),
+                            R.string.tidak_ada_koneksi_internet,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        return
+                    } else {
+                        findNavController().navigate(
+                            DataPelangganFragmentDirections.actionDataPelangganFragmentToDialogDetailFragment(
+                                it
+                            )
                         )
-                    )
-                } else {
-                    val builder: AlertDialog.Builder = AlertDialog.Builder(requireContext(),R.style.AlertDialogTheme)
-                    builder.setTitle("Hapus data ${it.nama} ?")
-                    builder.setNegativeButton("Tidak") { dialog, i ->
-                        dialog.dismiss()
                     }
-                    builder.setPositiveButton("Ya") { dialog, i ->
-                        viewModel.deleteData(it.id.toString())
-                        dialog.dismiss()
-                    }.create().show()
                 }
-            }
-        })
-        dataPelangganGridAdapter.setListener(object : DataPelangganListener {
-            override fun onItemClick(it: Pelanggan) {
-                findNavController().navigate(
-                    DataPelangganFragmentDirections.actionDataPelangganFragmentToDialogDetailFragment(
-                        it
-                    )
-                )
-            }
 
-            override fun onItemLongClick(it: Pelanggan, isUpdateOrDelete: String) {
-                if (isUpdateOrDelete == "Update") {
-                    findNavController().navigate(
-                        DataPelangganFragmentDirections.actionDataPelangganFragmentToDialogUpdateFragment(
-                            it
+                override fun onItemLongClick(it: Pelanggan, isUpdateOrDelete: String) {
+                    if (isUpdateOrDelete == "Update") {
+                        if (isOnline != true) {
+                            Toast.makeText(
+                                requireContext(),
+                                R.string.tidak_ada_koneksi_internet,
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            return
+                        } else {
+                            findNavController().navigate(
+                                DataPelangganFragmentDirections.actionDataPelangganFragmentToDialogUpdateFragment(
+                                    it
+                                )
+                            )
+                        }
+
+                    } else {
+                        if (isOnline != true) {
+                            Toast.makeText(
+                                requireContext(),
+                                R.string.tidak_ada_koneksi_internet,
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            return
+                        } else {
+                            val builder: AlertDialog.Builder =
+                                AlertDialog.Builder(requireContext(), R.style.AlertDialogTheme)
+                            builder.setTitle("Hapus data ${it.nama} ?")
+                            builder.setNegativeButton("Tidak") { dialog, i ->
+                                dialog.dismiss()
+                            }
+                            builder.setPositiveButton("Ya") { dialog, i ->
+                                viewModel.deleteData(it.id.toString())
+                                dialog.dismiss()
+                            }.create().show()
+                        }
+
+                    }
+                }
+            })
+
+            dataPelangganGridAdapter.setListener(object : DataPelangganListener {
+                override fun onItemClick(it: Pelanggan) {
+                    if (isOnline != true) {
+                        Toast.makeText(
+                            requireContext(),
+                            R.string.tidak_ada_koneksi_internet,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        return
+                    } else {
+                        findNavController().navigate(
+                            DataPelangganFragmentDirections.actionDataPelangganFragmentToDialogDetailFragment(
+                                it
+                            )
                         )
-                    )
-                } else viewModel.deleteData(it.id.toString())
-            }
-        })
-    }
+                    }
+                }
 
+                override fun onItemLongClick(it: Pelanggan, isUpdateOrDelete: String) {
+                    if (isUpdateOrDelete == "Update") {
+                        if (isOnline != true) {
+                            Toast.makeText(
+                                requireContext(),
+                                R.string.tidak_ada_koneksi_internet,
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            return
+                        } else {
+                            findNavController().navigate(
+                                DataPelangganFragmentDirections.actionDataPelangganFragmentToDialogUpdateFragment(
+                                    it
+                                )
+                            )
+                        }
+
+                    } else {
+                        if (isOnline != true) {
+                            Toast.makeText(
+                                requireContext(),
+                                R.string.tidak_ada_koneksi_internet,
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            return
+                        } else {
+                            val builder: AlertDialog.Builder =
+                                AlertDialog.Builder(requireContext(), R.style.AlertDialogTheme)
+                            builder.setTitle("Hapus data ${it.nama} ?")
+                            builder.setNegativeButton("Tidak") { dialog, i ->
+                                dialog.dismiss()
+                            }
+                            builder.setPositiveButton("Ya") { dialog, i ->
+                                viewModel.deleteData(it.id.toString())
+                                dialog.dismiss()
+                            }.create().show()
+                        }
+
+                    }
+                }
+            })
+        }
+
+    }
 
     private fun setupRecyclerView() {
         with(binding) {
@@ -197,51 +268,81 @@ class DataPelangganFragment : Fragment() {
         }
     }
 
+    private fun refreshLayout() {
+        binding.swipeRefreshLayout.isRefreshing = true
+    }
+
+    private fun stopRefreshLayout() {
+        binding.swipeRefreshLayout.isRefreshing = false
+    }
+
+    @SuppressLint("FragmentLiveDataObserve")
     private fun setupObservers() {
-        viewModel.isInsertSuccess.observe(viewLifecycleOwner) {
-
-            if (it != true) {
-                loading.start(State.SUCCESS)
-            } else {
-                loading.dismiss()
-                binding.swipeRefreshLayout.isRefreshing = false
-                requireActivity().showToast(getString(R.string.data_berhasil_ditambah))
-            }
-        }
-
-        viewModel.isDeleteSuccess.observe(viewLifecycleOwner) {
-            if (it != true) {
-                loading.start(State.SUCCESS)
-            } else {
-                loading.dismiss()
-                binding.swipeRefreshLayout.isRefreshing = false
-                requireActivity().showToast(getString(R.string.data_berhasil_dihapus))
+        viewModel.status.observe(this) { state ->
+            when (state!!) {
+                State.LOADING -> {
+                    loading.start(State.LOADING)
+                    refreshLayout()
+                }
+                State.SUCCESS -> {
+                    binding.rvLayout.visibility = View.VISIBLE
+                    stopRefreshLayout()
+                    loading.dismiss()
+                }
+                State.FAILED -> {
+                    Toast.makeText(requireContext(), "Gagal mendapatkan data", Toast.LENGTH_SHORT)
+                        .show()
+                    stopRefreshLayout()
+                    loading.dismiss()
+                }
+                State.INSERT_SUCCESS -> {
+                    loading.dismiss()
+                    stopRefreshLayout()
+                    requireActivity().showToast(getString(R.string.data_berhasil_ditambah))
+                }
+                State.DELETE_SUCCESS -> {
+                    loading.dismiss()
+                    stopRefreshLayout()
+                    requireActivity().showToast(getString(R.string.data_berhasil_dihapus))
+                }
+                State.UPDATE_SUCCESS -> {
+                    loading.dismiss()
+                    stopRefreshLayout()
+                    requireActivity().showToast(getString(R.string.data_berhasil_diupdate))
+                }
+                State.DELETE_ALL_SUCCESS -> {
+                    loading.dismiss()
+                    stopRefreshLayout()
+                    requireActivity().showToast(getString(R.string.semua_data_berhasil_dihapus))
+                }
+                State.INSERT_FAILED -> {
+                    loading.dismiss()
+                    stopRefreshLayout()
+                    requireActivity().showToast(getString(R.string.data_gagal_dihapus))
+                }
+                State.UPDATE_FAILED -> {
+                    loading.dismiss()
+                    stopRefreshLayout()
+                    requireActivity().showToast(getString(R.string.data_gagal_diupdate))
+                }
+                State.DELETE_FAILED -> {
+                    loading.dismiss()
+                    stopRefreshLayout()
+                    requireActivity().showToast(getString(R.string.data_gagal_dihapus))
+                }
+                State.DELETE_ALL_FAILED -> {
+                    loading.dismiss()
+                    stopRefreshLayout()
+                    requireActivity().showToast(getString(R.string.semua_data_gagal_dihapus))
+                }
             }
         }
 
         viewModel.errorMsg.observe(viewLifecycleOwner) {
             if (it != null) {
-                binding.swipeRefreshLayout.isRefreshing = false
+                stopRefreshLayout()
                 loading.dismiss()
                 Toast.makeText(requireContext(), "Error: $it", Toast.LENGTH_SHORT).show()
-            }
-        }
-
-        viewModel.isUpdateSuccess.observe(viewLifecycleOwner) {
-            if (it != true) {
-                loading.start(State.SUCCESS)
-            } else {
-                loading.dismiss()
-                binding.swipeRefreshLayout.isRefreshing = false
-                requireActivity().showToast(getString(R.string.data_berhasil_diupdate))
-            }
-        }
-
-        viewModel.isInsertSuccess.observe(viewLifecycleOwner){
-            if(it==true){
-                binding.swipeRefreshLayout.isRefreshing = false
-                dialogTambahPelanggan.dismiss()
-                loading.dismiss()
             }
         }
 
@@ -249,18 +350,11 @@ class DataPelangganFragment : Fragment() {
             if (it != null) {
                 dataPelangganAdapter.setData(it)
                 dataPelangganGridAdapter.setData(it)
-                binding.rvLayout.visibility = View.VISIBLE
-                binding.swipeRefreshLayout.isRefreshing = false
-                loading.dismiss()
-            } else {
-                Toast.makeText(requireContext(), "Gagal mendapatkan data", Toast.LENGTH_SHORT)
-                    .show()
-                binding.swipeRefreshLayout.isRefreshing = false
-                loading.dismiss()
             }
         }
     }
-    @SuppressLint("NotifyDataSetChanged")
+
+    @SuppressLint("NotifyDataSetChanged", "FragmentLiveDataObserve")
     private fun setupListeners() {
 
         binding.swipeRefreshLayout.setOnRefreshListener {
@@ -268,17 +362,17 @@ class DataPelangganFragment : Fragment() {
             viewModel.initDataPelanggan()
         }
 
-        binding.searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(p0: String?): Boolean {
                 return false
             }
 
             override fun onQueryTextChange(p0: String?): Boolean {
-                if(p0.toString() == ""){
+                if (p0.toString() == "") {
                     dataPelangganAdapter.setData(viewModel.getCurrentData(""))
                     dataPelangganGridAdapter.setData(viewModel.getCurrentData(""))
-                }else {
-                    viewModel.searchData(requireContext(),p0.toString())
+                } else {
+                    viewModel.searchData(requireContext(), p0.toString())
                 }
                 return false
             }
@@ -286,15 +380,24 @@ class DataPelangganFragment : Fragment() {
         binding.btnAdd.enableOnClickAnimation()
         binding.btnRemove.enableOnClickAnimation()
         binding.btnRemove.setOnClickListener {
-            val builder: AlertDialog.Builder = AlertDialog.Builder(requireContext(),R.style.AlertDialogTheme)
-            builder.setTitle("Hapus semua data ?")
-            builder.setNegativeButton("Tidak") { dialog, i ->
-                dialog.dismiss()
+            networkConnection.observe(this@DataPelangganFragment) {
+                val builder: AlertDialog.Builder = AlertDialog.Builder(requireContext(), R.style.AlertDialogTheme)
+                builder.setTitle("Hapus semua data ?")
+                builder.setNegativeButton("Tidak") { dialog, i ->
+                    dialog.dismiss()
+                }
+
+                builder.setPositiveButton("Ya") { dialog, i ->
+                    if(it!=true){
+                        Toast.makeText(requireContext(), R.string.tidak_ada_koneksi_internet, Toast.LENGTH_SHORT).show()
+                        return@setPositiveButton
+                    }else{
+                        viewModel.deleteAllData()
+                        dialog.dismiss()
+                    }
+                }.create().show()
             }
-            builder.setPositiveButton("Ya") { dialog, i ->
-                viewModel.deleteAllData()
-                dialog.dismiss()
-            }.create().show()
+
         }
 
         binding.btnAdd.setOnClickListener {
