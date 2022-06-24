@@ -154,7 +154,7 @@
             app:autoPlay="true"
             app:showBottomShadow="false"
             app:showTopShadow="false"
-            app:imagePlaceholder="@mipmap/ic_launcher"
+            app:imagePlaceholder="@drawable/ic_broken_image"
             app:autoPlayDelay="3000"
             app:autoWidthFixing="true"
             app:touchToPause="false"

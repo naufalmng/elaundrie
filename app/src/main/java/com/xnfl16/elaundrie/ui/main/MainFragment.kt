@@ -94,7 +94,7 @@ class MainFragment : Fragment() {
                 }
             } else {
                 binding.networkIndicator.setConnectivityStatus(requireContext(),false)
-                binding.carouselView.carouselBackground = AppCompatResources.getDrawable(requireContext(),R.mipmap.ic_launcher)
+                binding.carouselView.carouselBackground = AppCompatResources.getDrawable(requireContext(),R.drawable.ic_broken_image)
                 viewModel.connectionFailed()
             }
 
