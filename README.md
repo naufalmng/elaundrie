@@ -2,6 +2,7 @@
 FITUR:
 - Tambah Data Laundry
 - Hapus Data Laundry
+- Indikator Konektivitas
 - Sunting Data Laundry
 - Cari Data Laundry
 - Print Struk Laundry
